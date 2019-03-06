@@ -37,5 +37,5 @@ public class RandomStringGenerator {
     private JTextField a0TextField;
     private JButton button_Copy;
     private JButton button_Generator;
-    
+
 }
