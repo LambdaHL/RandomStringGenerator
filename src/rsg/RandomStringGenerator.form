@@ -3,24 +3,13 @@
   <grid id="27dc6" binding="panel_Main" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="693" height="430"/>
+      <xy x="20" y="20" width="693" height="547"/>
     </constraints>
     <properties>
       <font name="Consolas"/>
     </properties>
     <border type="none"/>
     <children>
-      <component id="259f1" class="javax.swing.JTextArea" binding="textArea">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="100"/>
-          </grid>
-        </constraints>
-        <properties>
-          <editable value="false"/>
-          <font name="Consolas"/>
-        </properties>
-      </component>
       <grid id="76d8d" layout-manager="GridLayoutManager" row-count="8" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
@@ -112,7 +101,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="282c7" class="javax.swing.JTextField" binding="a0TextField" default-binding="true">
+          <component id="282c7" class="javax.swing.JTextField" binding="textField_Length">
             <constraints>
               <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -120,7 +109,7 @@
             </constraints>
             <properties>
               <font name="Consolas" size="12"/>
-              <text value="0"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="dac43" class="javax.swing.JSeparator">
@@ -129,13 +118,14 @@
             </constraints>
             <properties/>
           </component>
-          <component id="c0236" class="javax.swing.JButton" binding="button_Generator">
+          <component id="c0236" class="javax.swing.JButton" binding="button_Generate">
             <constraints>
               <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="true"/>
               <font name="Consolas" size="14"/>
-              <text value="Generator"/>
+              <text value="Generate"/>
             </properties>
           </component>
           <component id="4787c" class="javax.swing.JButton" binding="button_Copy">
@@ -162,7 +152,7 @@
               <text value="Separator"/>
             </properties>
           </component>
-          <component id="39612" class="javax.swing.JComboBox" binding="comboBox_Symbol">
+          <component id="39612" class="javax.swing.JComboBox" binding="comboBox_Separator">
             <constraints>
               <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -172,10 +162,12 @@
                 <item value="None"/>
                 <item value="Space"/>
                 <item value="-"/>
+                <item value="|"/>
                 <item value="\"/>
                 <item value="/"/>
                 <item value=";"/>
                 <item value=":"/>
+                <item value="."/>
               </model>
             </properties>
           </component>
@@ -270,6 +262,29 @@
           </grid>
         </children>
       </grid>
+      <scrollpane id="d524e" binding="scrollPane">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <autoscrolls value="false"/>
+          <horizontalScrollBarPolicy value="31"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="259f1" class="javax.swing.JTextArea" binding="textArea">
+            <constraints/>
+            <properties>
+              <editable value="false"/>
+              <font name="Consolas"/>
+              <lineWrap value="true"/>
+              <minimumSize width="689" height="30"/>
+              <rows value="5"/>
+              <wrapStyleWord value="true"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
   <buttonGroups>
@@ -284,11 +299,6 @@
       <member id="5ef29"/>
       <member id="79079"/>
       <member id="33fd4"/>
-    </group>
-    <group name="buttonGroup_Character">
-      <member id="71680"/>
-      <member id="71680"/>
-      <member id="7ad42"/>
     </group>
   </buttonGroups>
 </form>
