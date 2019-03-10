@@ -242,7 +242,7 @@ public class RandomStringGenerator {
                 }
                 break;
             }
-            case NUM_HEX: {//FIXME 字数不对
+            case NUM_HEX: {
                 for (int i = 0; i < length; i++) {
                     int r = random.nextInt(16);
                     if (r > 9) {
@@ -267,7 +267,7 @@ public class RandomStringGenerator {
                                 str = str + "E";
                                 break;
                             }
-                            case 16: {
+                            case 15: {
                                 str = str + "F";
                                 break;
                             }
@@ -292,7 +292,6 @@ public class RandomStringGenerator {
                     if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
                         str = str + separator;
                         k = 0;
-                        continue;
                     }
                     str = str + random.nextInt(2);
                     k++;
@@ -305,7 +304,6 @@ public class RandomStringGenerator {
                     if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
                         str = str + separator;
                         k = 0;
-                        continue;
                     }
                     str = str + random.nextInt(8);
                     k++;
@@ -318,20 +316,18 @@ public class RandomStringGenerator {
                     if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
                         str = str + separator;
                         k = 0;
-                        continue;
                     }
                     str = str + random.nextInt(10);
                     k++;
                 }
                 break;
             }
-            case NUM_HEX: {//FIXME 字数不对
+            case NUM_HEX: {
                 int k = 0;
                 for (int i = 0; i < length; i++) {
                     if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
                         str = str + separator;
                         k = 0;
-                        continue;
                     }
                     int r = random.nextInt(16);
                     if (r > 9) {
@@ -356,7 +352,7 @@ public class RandomStringGenerator {
                                 str = str + "E";
                                 break;
                             }
-                            case 16: {
+                            case 15: {
                                 str = str + "F";
                                 break;
                             }
@@ -421,7 +417,6 @@ public class RandomStringGenerator {
                     if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
                         str = str + separator;
                         k = 0;
-                        continue;
                     }
                     r = random.nextInt(26) + 97;
                     str = str + (char) r;
@@ -435,7 +430,6 @@ public class RandomStringGenerator {
                     if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
                         str = str + separator;
                         k = 0;
-                        continue;
                     }
                     r = random.nextInt(26) + 65;
                     str = str + (char) r;
@@ -449,7 +443,6 @@ public class RandomStringGenerator {
                     if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
                         str = str + separator;
                         k = 0;
-                        continue;
                     }
                     if (random.nextInt(2) == 0) {
                         r = random.nextInt(26) + 97;
