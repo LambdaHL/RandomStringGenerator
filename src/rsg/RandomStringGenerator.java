@@ -9,10 +9,10 @@ import java.awt.event.*;
 import java.util.Random;
 
 public class RandomStringGenerator {
-    int number = 0, character = 0;
-    String separator = "";
-    static final int NUM_NONE = 0, NUM_BINARY = 1, NUM_OCTAL = 2, NUM_DECIMAL = 3, NUM_HEX = 4;
-    static final int CHAR_NONE = 0, CHAR_L = 1, CHAR_C = 2, CHAR_ALL = 3;
+    private int number = 0, character = 0;
+    private String separator = "";
+    private static final int NUM_NONE = 0, NUM_BINARY = 1, NUM_OCTAL = 2, NUM_DECIMAL = 3, NUM_HEX = 4;
+    private static final int CHAR_NONE = 0, CHAR_L = 1, CHAR_C = 2, CHAR_ALL = 3;
 
     public RandomStringGenerator() {
 
@@ -48,9 +48,9 @@ public class RandomStringGenerator {
                 }
                 if (number != NUM_NONE && character != CHAR_NONE) {
                     if (separator.isEmpty()) {
-
+                        textArea.setText(getHybridString(number, character, Integer.parseInt(textField_Length.getText())));
                     } else {
-
+                        textArea.setText(getHybridString(number, character, Integer.parseInt(textField_Length.getText()), separator));
                     }
                 }
             }
@@ -466,12 +466,631 @@ public class RandomStringGenerator {
         Random random = new Random();
         String str = new String();
         int r;
+        switch (number) {
+            case NUM_BINARY: {
+                switch (character) {
+                    case CHAR_L: {
+                        for (int i = 0; i < length; i++) {
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(2);
+                                str = str + r;
+                            } else {
+                                r = random.nextInt(26) + 97;
+                                str = str + (char) r;
+                            }
+                        }
+                        break;
+                    }
+                    case CHAR_C: {
+                        for (int i = 0; i < length; i++) {
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(2);
+                                str = str + r;
+                            } else {
+                                r = random.nextInt(26) + 65;
+                                str = str + (char) r;
+                            }
+                        }
+                        break;
+                    }
+                    case CHAR_ALL: {
+                        for (int i = 0; i < length; i++) {
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(2);
+                                str = str + r;
+                            } else {
+                                if (random.nextInt(2) == 0) {
+                                    r = random.nextInt(26) + 97;
+                                    str = str + (char) r;
+                                } else {
+                                    r = random.nextInt(26) + 65;
+                                    str = str + (char) r;
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+            case NUM_OCTAL: {
+                switch (character) {
+                    case CHAR_L: {
+                        for (int i = 0; i < length; i++) {
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(8);
+                                str = str + r;
+                            } else {
+                                r = random.nextInt(26) + 97;
+                                str = str + (char) r;
+                            }
+                        }
+                        break;
+                    }
+                    case CHAR_C: {
+                        for (int i = 0; i < length; i++) {
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(8);
+                                str = str + r;
+                            } else {
+                                r = random.nextInt(26) + 65;
+                                str = str + (char) r;
+                            }
+                        }
+                        break;
+                    }
+                    case CHAR_ALL: {
+                        for (int i = 0; i < length; i++) {
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(8);
+                                str = str + r;
+                            } else {
+                                if (random.nextInt(2) == 0) {
+                                    r = random.nextInt(26) + 97;
+                                    str = str + (char) r;
+                                } else {
+                                    r = random.nextInt(26) + 65;
+                                    str = str + (char) r;
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+            case NUM_DECIMAL: {
+                switch (character) {
+                    case CHAR_L: {
+                        for (int i = 0; i < length; i++) {
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(10);
+                                str = str + r;
+                            } else {
+                                r = random.nextInt(26) + 97;
+                                str = str + (char) r;
+                            }
+                        }
+                        break;
+                    }
+                    case CHAR_C: {
+                        for (int i = 0; i < length; i++) {
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(10);
+                                str = str + r;
+                            } else {
+                                r = random.nextInt(26) + 65;
+                                str = str + (char) r;
+                            }
+                        }
+                        break;
+                    }
+                    case CHAR_ALL: {
+                        for (int i = 0; i < length; i++) {
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(10);
+                                str = str + r;
+                            } else {
+                                if (random.nextInt(2) == 0) {
+                                    r = random.nextInt(26) + 97;
+                                    str = str + (char) r;
+                                } else {
+                                    r = random.nextInt(26) + 65;
+                                    str = str + (char) r;
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+            case NUM_HEX: {
+                switch (character) {
+                    case CHAR_L: {
+                        for (int i = 0; i < length; i++) {
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(16);
+                                if (r > 9) {
+                                    switch (r) {
+                                        case 10: {
+                                            str = str + "A";
+                                            break;
+                                        }
+                                        case 11: {
+                                            str = str + "B";
+                                            break;
+                                        }
+                                        case 12: {
+                                            str = str + "C";
+                                            break;
+                                        }
+                                        case 13: {
+                                            str = str + "D";
+                                            break;
+                                        }
+                                        case 14: {
+                                            str = str + "E";
+                                            break;
+                                        }
+                                        case 15: {
+                                            str = str + "F";
+                                            break;
+                                        }
+                                    }
+                                } else {
+                                    str = str + r;
+                                }
+                            } else {
+                                r = random.nextInt(26) + 97;
+                                str = str + (char) r;
+                            }
+                        }
+                        break;
+                    }
+                    case CHAR_C: {
+                        for (int i = 0; i < length; i++) {
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(16);
+                                if (r > 9) {
+                                    switch (r) {
+                                        case 10: {
+                                            str = str + "A";
+                                            break;
+                                        }
+                                        case 11: {
+                                            str = str + "B";
+                                            break;
+                                        }
+                                        case 12: {
+                                            str = str + "C";
+                                            break;
+                                        }
+                                        case 13: {
+                                            str = str + "D";
+                                            break;
+                                        }
+                                        case 14: {
+                                            str = str + "E";
+                                            break;
+                                        }
+                                        case 15: {
+                                            str = str + "F";
+                                            break;
+                                        }
+                                    }
+                                } else {
+                                    str = str + r;
+                                }
+                            } else {
+                                r = random.nextInt(26) + 65;
+                                str = str + (char) r;
+                            }
+                        }
+                        break;
+                    }
+                    case CHAR_ALL: {
+                        for (int i = 0; i < length; i++) {
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(16);
+                                if (r > 9) {
+                                    switch (r) {
+                                        case 10: {
+                                            str = str + "A";
+                                            break;
+                                        }
+                                        case 11: {
+                                            str = str + "B";
+                                            break;
+                                        }
+                                        case 12: {
+                                            str = str + "C";
+                                            break;
+                                        }
+                                        case 13: {
+                                            str = str + "D";
+                                            break;
+                                        }
+                                        case 14: {
+                                            str = str + "E";
+                                            break;
+                                        }
+                                        case 15: {
+                                            str = str + "F";
+                                            break;
+                                        }
+                                    }
+                                } else {
+                                    str = str + r;
+                                }
+                            } else {
+                                if (random.nextInt(2) == 0) {
+                                    r = random.nextInt(26) + 97;
+                                    str = str + (char) r;
+                                } else {
+                                    r = random.nextInt(26) + 65;
+                                    str = str + (char) r;
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+        }
         return str;
     }
 
     private String getHybridString(int number, int character, int length, String separator) {
         Random random = new Random();
         String str = new String();
+        int r;
+        switch (number) {
+            case NUM_BINARY: {
+                switch (character) {
+                    case CHAR_L: {
+                        int k = 0;
+                        for (int i = 0; i < length; i++) {
+                            if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
+                                str = str + separator;
+                                k = 0;
+                            }
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(2);
+                                str = str + r;
+                            } else {
+                                r = random.nextInt(26) + 97;
+                                str = str + (char) r;
+                            }
+                            k++;
+                        }
+                        break;
+                    }
+                    case CHAR_C: {
+                        int k = 0;
+                        for (int i = 0; i < length; i++) {
+                            if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
+                                str = str + separator;
+                                k = 0;
+                            }
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(2);
+                                str = str + r;
+                            } else {
+                                r = random.nextInt(26) + 65;
+                                str = str + (char) r;
+                            }
+                            k++;
+                        }
+                        break;
+                    }
+                    case CHAR_ALL: {
+                        int k = 0;
+                        for (int i = 0; i < length; i++) {
+                            if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
+                                str = str + separator;
+                                k = 0;
+                            }
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(2);
+                                str = str + r;
+                            } else {
+                                if (random.nextInt(2) == 0) {
+                                    r = random.nextInt(26) + 97;
+                                    str = str + (char) r;
+                                } else {
+                                    r = random.nextInt(26) + 65;
+                                    str = str + (char) r;
+                                }
+                            }
+                            k++;
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+            case NUM_OCTAL: {
+                switch (character) {
+                    case CHAR_L: {
+                        int k = 0;
+                        for (int i = 0; i < length; i++) {
+                            if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
+                                str = str + separator;
+                                k = 0;
+                            }
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(8);
+                                str = str + r;
+                            } else {
+                                r = random.nextInt(26) + 97;
+                                str = str + (char) r;
+                            }
+                            k++;
+                        }
+                        break;
+                    }
+                    case CHAR_C: {
+                        int k = 0;
+                        for (int i = 0; i < length; i++) {
+                            if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
+                                str = str + separator;
+                                k = 0;
+                            }
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(8);
+                                str = str + r;
+                            } else {
+                                r = random.nextInt(26) + 65;
+                                str = str + (char) r;
+                            }
+                            k++;
+                        }
+                        break;
+                    }
+                    case CHAR_ALL: {
+                        int k = 0;
+                        for (int i = 0; i < length; i++) {
+                            if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
+                                str = str + separator;
+                                k = 0;
+                            }
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(8);
+                                str = str + r;
+                            } else {
+                                if (random.nextInt(2) == 0) {
+                                    r = random.nextInt(26) + 97;
+                                    str = str + (char) r;
+                                } else {
+                                    r = random.nextInt(26) + 65;
+                                    str = str + (char) r;
+                                }
+                            }
+                            k++;
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+            case NUM_DECIMAL: {
+                switch (character) {
+                    case CHAR_L: {
+                        int k = 0;
+                        for (int i = 0; i < length; i++) {
+                            if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
+                                str = str + separator;
+                                k = 0;
+                            }
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(10);
+                                str = str + r;
+                            } else {
+                                r = random.nextInt(26) + 97;
+                                str = str + (char) r;
+                            }
+                            k++;
+                        }
+                        break;
+                    }
+                    case CHAR_C: {
+                        int k = 0;
+                        for (int i = 0; i < length; i++) {
+                            if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
+                                str = str + separator;
+                                k = 0;
+                            }
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(10);
+                                str = str + r;
+                            } else {
+                                r = random.nextInt(26) + 65;
+                                str = str + (char) r;
+                            }
+                            k++;
+                        }
+                        break;
+                    }
+                    case CHAR_ALL: {
+                        int k = 0;
+                        for (int i = 0; i < length; i++) {
+                            if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
+                                str = str + separator;
+                                k = 0;
+                            }
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(10);
+                                str = str + r;
+                            } else {
+                                if (random.nextInt(2) == 0) {
+                                    r = random.nextInt(26) + 97;
+                                    str = str + (char) r;
+                                } else {
+                                    r = random.nextInt(26) + 65;
+                                    str = str + (char) r;
+                                }
+                            }
+                            k++;
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+            case NUM_HEX: {
+                switch (character) {
+                    case CHAR_L: {
+                        int k = 0;
+                        for (int i = 0; i < length; i++) {
+                            if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
+                                str = str + separator;
+                                k = 0;
+                            }
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(16);
+                                if (r > 9) {
+                                    switch (r) {
+                                        case 10: {
+                                            str = str + "A";
+                                            break;
+                                        }
+                                        case 11: {
+                                            str = str + "B";
+                                            break;
+                                        }
+                                        case 12: {
+                                            str = str + "C";
+                                            break;
+                                        }
+                                        case 13: {
+                                            str = str + "D";
+                                            break;
+                                        }
+                                        case 14: {
+                                            str = str + "E";
+                                            break;
+                                        }
+                                        case 15: {
+                                            str = str + "F";
+                                            break;
+                                        }
+                                    }
+                                } else {
+                                    str = str + r;
+                                }
+                            } else {
+                                r = random.nextInt(26) + 97;
+                                str = str + (char) r;
+                            }
+                            k++;
+                        }
+                        break;
+                    }
+                    case CHAR_C: {
+                        int k = 0;
+                        for (int i = 0; i < length; i++) {
+                            if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
+                                str = str + separator;
+                                k = 0;
+                            }
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(16);
+                                if (r > 9) {
+                                    switch (r) {
+                                        case 10: {
+                                            str = str + "A";
+                                            break;
+                                        }
+                                        case 11: {
+                                            str = str + "B";
+                                            break;
+                                        }
+                                        case 12: {
+                                            str = str + "C";
+                                            break;
+                                        }
+                                        case 13: {
+                                            str = str + "D";
+                                            break;
+                                        }
+                                        case 14: {
+                                            str = str + "E";
+                                            break;
+                                        }
+                                        case 15: {
+                                            str = str + "F";
+                                            break;
+                                        }
+                                    }
+                                } else {
+                                    str = str + r;
+                                }
+                            } else {
+                                r = random.nextInt(26) + 65;
+                                str = str + (char) r;
+                            }
+                            k++;
+                        }
+                        break;
+                    }
+                    case CHAR_ALL: {
+                        int k = 0;
+                        for (int i = 0; i < length; i++) {
+                            if (slider_Interval.getValue() != 0 && k == slider_Interval.getValue()) {
+                                str = str + separator;
+                                k = 0;
+                            }
+                            if (random.nextInt(2) == 0) {
+                                r = random.nextInt(16);
+                                if (r > 9) {
+                                    switch (r) {
+                                        case 10: {
+                                            str = str + "A";
+                                            break;
+                                        }
+                                        case 11: {
+                                            str = str + "B";
+                                            break;
+                                        }
+                                        case 12: {
+                                            str = str + "C";
+                                            break;
+                                        }
+                                        case 13: {
+                                            str = str + "D";
+                                            break;
+                                        }
+                                        case 14: {
+                                            str = str + "E";
+                                            break;
+                                        }
+                                        case 15: {
+                                            str = str + "F";
+                                            break;
+                                        }
+                                    }
+                                } else {
+                                    str = str + r;
+                                }
+                            } else {
+                                if (random.nextInt(2) == 0) {
+                                    r = random.nextInt(26) + 97;
+                                    str = str + (char) r;
+                                } else {
+                                    r = random.nextInt(26) + 65;
+                                    str = str + (char) r;
+                                }
+                            }
+                            k++;
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+        }
         return str;
     }
 
