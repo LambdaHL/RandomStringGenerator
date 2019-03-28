@@ -29,7 +29,7 @@ public class RandomStringGenerator {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (textField_Length.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Length error", "Warnning", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Length error", "Warning", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 if (number == NUM_NONE && character != CHAR_NONE) {
